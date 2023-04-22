@@ -41,7 +41,7 @@ export default ({
             variantClasses = `bg-black text-gray-300 hover:text-white`
             break
         default:
-            variantClasses = `bg-black text-gray-300 hover:text-white`
+            variantClasses = `bg-black text-gray-200 hover:text-white hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-300 dark:text-gray-900 dark:hover:text-gray-700`
     }
 
     const sizeClasses = `${

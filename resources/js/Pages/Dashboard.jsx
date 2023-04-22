@@ -41,7 +41,7 @@ export default (props) => {
                 You're logged in!
                 
             </div>
-            <button className='p-4 dark_btn' onClick={openModal}>Open</button>
+            {/* <button className='p-4 dark_btn' onClick={openModal}>Open</button>
             <Modal  show={show} children={<> <section
   className="mb-8 lg:mr-8 bg-white p-6 rounded shadow-md"
 >
@@ -121,7 +121,7 @@ export default (props) => {
 </section>
 </>}>
                
-            </Modal>
+            </Modal> */}
         </Authenticated>
     )
 }

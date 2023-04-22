@@ -6,7 +6,7 @@ import {
     SidebarCollapsible,
 } from '@/Components/Sidebar/Sidebar'
 import { TemplateIcon } from '@heroicons/react/outline'
-import { FaTachometerAlt,FaUserCircle, FaUsers } from 'react-icons/fa';
+import { FaTachometerAlt, FaUserCircle, FaUsers } from 'react-icons/fa';
 
 export default () => {
     return (
@@ -19,18 +19,18 @@ export default () => {
                 href={route('dashboard')}
                 active={route().current('dashboard')}
                 icon={
-                   <FaTachometerAlt className='text-2xl'/>
+                    <FaTachometerAlt className='text-2xl' />
                 }
             />
-              {/* <SidebarLink
+            <SidebarLink
                 title={'Users'}
-                href={route('dashboard')}
-                active={route().current('dashboard.*')}
+                href={route('users.index')}
+                active={route().current('users.*')}
                 icon={
-                   <FaUsers className='text-2xl'/>
+                    <FaUsers className='text-2xl' />
                 }
-            /> */}
-             <SidebarLink
+            />
+            <SidebarLink
                 title={'Profile'}
                 href={route('profile.edit')}
                 active={route().current('profile.*')}
