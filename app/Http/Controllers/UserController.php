@@ -76,8 +76,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $user = User::where('id',$id)->first();
+        if($user == null){
+            return abort(404);
+        }
+        $user->delete();
+        return to_route('users.index');
     }
 }
