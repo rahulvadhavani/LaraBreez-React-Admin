@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_name',
+        'first_name',
+        'avatar',
     ];
 
     /**
@@ -32,6 +35,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getAvatarAttribute($value){
+        return $value == null ? asset('assets/images/user.png') : $value;
+    }
 
     /**
      * The attributes that should be cast.

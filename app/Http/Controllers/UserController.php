@@ -12,8 +12,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return inertia('User/Index', ['users' => $users,'module' => 'Users']);
+        $search = request()->search??'';
+        $current_page = request()->current_page??'';
+        $users = User::when(isset(request()->search) && !empty(request()->search),function($query){
+            $query->where('name','like','%'.request()->search.'%')
+            ->orWhere('email','like','%'.request()->search.'%');
+        })->paginate(10);
+        $users->appends(request()->query());
+        $data= ['users' => $users,'module' => 'Users','current_page' => $current_page,'search' => $search];
+        if(request()->expectsJson()){
+            return response()->json($data);
+        }
+        return inertia('User/Index', $data);
     }
 
     /**

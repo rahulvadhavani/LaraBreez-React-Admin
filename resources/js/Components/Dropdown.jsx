@@ -29,7 +29,7 @@ const Dropdown = ({
     trigger,
     align = 'right',
     width = '48',
-    contentClasses = 'py-1 bg-white',
+    contentClasses = 'bg-white',
 }) => {
     let alignmentClasses = 'origin-top'
 
@@ -61,7 +61,7 @@ const Dropdown = ({
                     className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
                 >
                     <div
-                        className={`rounded-md ring-1 ring-black ring-opacity-5 ${contentClasses}`}
+                        className={`${contentClasses}`}
                     >
                         {children}
                     </div>
