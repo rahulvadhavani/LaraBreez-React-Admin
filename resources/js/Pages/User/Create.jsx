@@ -4,7 +4,6 @@ import {
     UserIcon,
     MailIcon,
     LockClosedIcon,
-    UserAddIcon,
 } from '@heroicons/react/outline'
 import { usePage, Link, useForm } from '@inertiajs/react'
 import InputIconWrapper from '@/Components/InputIconWrapper'
