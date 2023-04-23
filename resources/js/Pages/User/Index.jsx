@@ -4,6 +4,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import Input from '@/Components/Input';
 import Button from '@/Components/Button';
 import { FaEdit, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
+import Pagination from '@/Components/Admin/Pagination';
 
 const Index = ({ auth }) => {
     const { users, module, search, current_page } = usePage().props;
@@ -54,7 +55,7 @@ const Index = ({ auth }) => {
                                     />
                                     <Button href={route('users.index')} className='ml-3'><FaUndoAlt /></Button>
                                 </div>
-                                <Button>Create</Button>
+                                <Button href={route('users.create')}>Create</Button>
                             </div>
                             <div className="flex flex-col mt-3">
                                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -126,27 +127,10 @@ const Index = ({ auth }) => {
                                     </div>
                                 </div>
                             </div>
-                            {usersData.data.length > 0 && (
-                                <div className="flex items-center justify-between my-6">
-                                    <p>Showing {usersData.from} to {usersData.to} of {usersData.total} records</p>
-                                    <div className="items-center hidden lg:flex gap-x-1">
-                                        {usersData.links.map((link, index) => (
-                                            <div key={index}>
-                                                {link.url != null ?
-                                                    <Link dangerouslySetInnerHTML={{ __html: link.label }} className={` hover: bg-gray-200 dark:hover:bg-gray-700  dark:border-gray-600 border-gray-200 rounded-md border px-3 shadow-md py-1 ${link.active ? 'bg-sky-200 text-blue-800 border-gray-300 dark:border-gray-300' : 'bg-gray-100 dark:bg-gray-800 dark:text-gray-100'} `} href={link.url}>
-                                                    </Link>
-                                                    : <label className='hover:bg-gray-200 dark:hover:bg-gray-700  dark:border-gray-700 border-gray-200 rounded-md border px-3 shadow-md py-1  text-gray-400 dark:text-gray-600 poin cursor-not-allowed' dangerouslySetInnerHTML={{ __html: link.label }}></label>}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
+                            <Pagination data={usersData} ></Pagination>
                         </section>
                     </div>
                 </div>
-
-
             </div>
         </Authenticated>
     );

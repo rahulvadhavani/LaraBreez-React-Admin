@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
         $users = User::when(isset(request()->search) && !empty(request()->search),function($query){
             $query->where('name','like','%'.request()->search.'%')
             ->orWhere('email','like','%'.request()->search.'%');
-        })->paginate(10);
+        })->orderBy('id','desc')->paginate(10);
         $users->appends(request()->query());
         $data= ['users' => $users,'module' => 'Users','current_page' => $current_page,'search' => $search];
         if(request()->expectsJson()){
@@ -31,14 +33,20 @@ class UserController extends Controller
      */
     public function create()
     {
+        $data= ['module' => 'Users Create'];
+        return inertia('User/Create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $postData = $request->validated();
+        $postData['password'] = Hash::make($request->password);
+        unset($postData['password_confirmation']);
+        $user = User::create($postData);
+        return to_route('users.index');
     }
 
     /**
