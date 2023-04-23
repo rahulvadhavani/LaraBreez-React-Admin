@@ -10,6 +10,7 @@ import InputIconWrapper from '@/Components/InputIconWrapper'
 import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
+import Breadcrumbs from '@/Components/Admin/Breadcrumbs';
 
 
 const Create = ({ auth }) => {
@@ -47,9 +48,12 @@ const Create = ({ auth }) => {
             title={module}
             auth={auth}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {module}
-                </h2>
+                <div className='flex justify-between'>
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        {module}
+                    </h2>
+                    <Breadcrumbs modules={['User','Create']}></Breadcrumbs>
+                </div>
             }
         >
             <div className="space-y-6">

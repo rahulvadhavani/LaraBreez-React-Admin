@@ -1,3 +1,4 @@
+import Breadcrumbs from '@/Components/Admin/Breadcrumbs'
 import Authenticated from '@/Layouts/Authenticated'
 import { useState } from 'react'
 
@@ -33,6 +34,7 @@ export default (props) => {
                     <h2 className="text-xl font-semibold leading-tight">
                         Dashboard
                     </h2>
+                    <Breadcrumbs modules={['Dashboard']}></Breadcrumbs>
                 </div>
             }
         >

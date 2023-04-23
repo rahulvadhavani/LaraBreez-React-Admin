@@ -6,6 +6,7 @@ import Button from '@/Components/Button';
 import { FaEdit, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
 import Pagination from '@/Components/Admin/Pagination';
 import DeleteModal from '@/Components/Admin/DeleteModal';
+import Breadcrumbs from '@/Components/Admin/Breadcrumbs';
 
 const Index = ({ auth }) => {
     const { users, module, search, current_page } = usePage().props;
@@ -46,9 +47,12 @@ const Index = ({ auth }) => {
             title={module}
             auth={auth}
             header={
+                <div className='flex justify-between'>
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     {module}
                 </h2>
+                <Breadcrumbs modules={['User']}></Breadcrumbs>
+                </div>
             }
         >
             <div className="space-y-6">

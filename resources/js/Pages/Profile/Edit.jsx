@@ -2,6 +2,7 @@ import Authenticated from '@/Layouts/Authenticated'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm'
 import DeleteUserForm from './Partials/DeleteUserForm'
+import Breadcrumbs from '@/Components/Admin/Breadcrumbs'
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
@@ -9,9 +10,12 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
             title="Profile"
             auth={auth}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Profile
-                </h2>
+                <div className='flex justify-between'>
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        Profile
+                    </h2>
+                    <Breadcrumbs modules={['Profile', 'Edit']}></Breadcrumbs>
+                </div>
             }
         >
             <div className="space-y-6">
