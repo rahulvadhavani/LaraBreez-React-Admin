@@ -17,7 +17,7 @@ const Create = ({ auth }) => {
     const { module } = usePage().props;
 
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, transform } = useForm({
         name: '',
         first_name: '',
         last_name: '',
@@ -38,7 +38,7 @@ const Create = ({ auth }) => {
         )
     }
 
-    const submit = (e) => {
+    const submit = (e, add_nore = '') => {
         e.preventDefault()
         post(route('users.store'))
     }
@@ -52,7 +52,7 @@ const Create = ({ auth }) => {
                     <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                         {module}
                     </h2>
-                    <Breadcrumbs modules={['User','Create']}></Breadcrumbs>
+                    <Breadcrumbs modules={['User', 'Create']}></Breadcrumbs>
                 </div>
             }
         >
@@ -89,7 +89,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.name && <span className='text-red-800'>{errors.name}</span>}
+                                            {errors.name && <span className='text-red-700'>{errors.name}</span>}
 
                                         </div>
                                         <div className="space-y-2">
@@ -114,7 +114,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.email && <span className='text-red-800'>{errors.email}</span>}
+                                            {errors.email && <span className='text-red-700'>{errors.email}</span>}
                                         </div>
                                         <div className="space-y-2">
                                             <Label forInput="first_name" value="First Name" />
@@ -139,7 +139,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.first_name && <span className='text-red-800'>{errors.first_name}</span>}
+                                            {errors.first_name && <span className='text-red-700'>{errors.first_name}</span>}
 
                                         </div>
                                         <div className="space-y-2">
@@ -165,7 +165,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.last_name && <span className='text-red-800'>{errors.last_name}</span>}
+                                            {errors.last_name && <span className='text-red-700'>{errors.last_name}</span>}
 
                                         </div>
                                         <div className="space-y-2">
@@ -190,7 +190,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.password && <span className='text-red-800'>{errors.password}</span>}
+                                            {errors.password && <span className='text-red-700'>{errors.password}</span>}
 
                                         </div>
 
@@ -218,7 +218,7 @@ const Create = ({ auth }) => {
                                                     withIcon
                                                 />
                                             </InputIconWrapper>
-                                            {errors.password_confirmation && <span className='text-red-800'>{errors.password_confirmation}</span>}
+                                            {errors.password_confirmation && <span className='text-red-700'>{errors.password_confirmation}</span>}
                                         </div>
                                     </div>
                                     <div className='flex justify-center mt-8'>
@@ -229,6 +229,7 @@ const Create = ({ auth }) => {
                                             <span>Create User</span>
                                         </Button>
                                         <Button
+                                            onClick={(e) => { submit(e, 'add_nore') }}
                                             type='button'
                                             className="mx-2"
                                             processing={processing}

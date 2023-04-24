@@ -7,6 +7,8 @@ import { FaEdit, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
 import Pagination from '@/Components/Admin/Pagination';
 import DeleteModal from '@/Components/Admin/DeleteModal';
 import Breadcrumbs from '@/Components/Admin/Breadcrumbs';
+import Status from '@/Components/Admin/Status';
+import ButtonLink from '@/Components/Admin/ButtonLink';
 
 const Index = ({ auth }) => {
     const { users, module, search, current_page } = usePage().props;
@@ -48,10 +50,10 @@ const Index = ({ auth }) => {
             auth={auth}
             header={
                 <div className='flex justify-between'>
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {module}
-                </h2>
-                <Breadcrumbs modules={['User']}></Breadcrumbs>
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        {module}
+                    </h2>
+                    <Breadcrumbs modules={['User']}></Breadcrumbs>
                 </div>
             }
         >
@@ -70,7 +72,9 @@ const Index = ({ auth }) => {
                                         name="search"
                                         value={searchTerm}
                                     />
-                                    <Button href={route('users.index')} className='ml-3'><FaUndoAlt /></Button>
+                                    <ButtonLink preserveScroll={true} href={route('users.index')} className='ml-3'>
+                                        <FaUndoAlt />
+                                    </ButtonLink>
                                 </div>
                                 <Button size='sm' href={route('users.create')}>Create</Button>
                             </div>
@@ -119,21 +123,7 @@ const Index = ({ auth }) => {
                                                                 {user.email}
                                                             </td>
                                                             <td className="px-4 py-2 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                                {user.email_verified_at != null ?
-                                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                                                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                                                                        <h2 className="text-sm font-normal text-emerald-500">
-                                                                            Verified
-                                                                        </h2>
-                                                                    </div>
-                                                                    :
-                                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                                                                        <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                                                                        <h2 className="text-sm font-normal text-red-500">
-                                                                            Unverified
-                                                                        </h2>
-                                                                    </div>
-                                                                }
+                                                                {user.email_verified_at != null ? <Status status={true} >Verified</Status> : <Status status={false} >Unverified</Status>}
                                                             </td>
                                                             <td className="px-4 py-2 text-sm whitespace-nowrap">
                                                                 <div className="flex items-center gap-x-6 text-lg">

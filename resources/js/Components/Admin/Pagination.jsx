@@ -13,7 +13,7 @@ export default function Pagination(props) {
                         {paginationData.links.map((link, index) => (
                             <div key={index}>
                                 {link.url != null ?
-                                    <Link dangerouslySetInnerHTML={{ __html: link.label }} className={` hover: bg-gray-200 dark:hover:bg-gray-700  dark:border-gray-600 border-gray-200 rounded-md border px-3 shadow-md py-1 ${link.active ? 'bg-sky-200 text-blue-800 border-gray-300 dark:border-gray-300' : 'bg-gray-100 dark:bg-gray-800 dark:text-gray-100'} `} href={link.url}>
+                                    <Link preserveScroll={true} dangerouslySetInnerHTML={{ __html: link.label }} className={` hover: bg-gray-200 dark:hover:bg-gray-700  dark:border-gray-600 border-gray-200 rounded-md border px-3 shadow-md py-1 ${link.active ? 'bg-sky-200 text-blue-800 border-gray-300 dark:border-gray-300' : 'bg-gray-100 dark:bg-gray-800 dark:text-gray-100'} `} href={link.url}>
                                     </Link>
                                     : <label className='hover:bg-gray-200 dark:hover:bg-gray-700  dark:border-gray-700 border-gray-200 rounded-md border px-3 shadow-md py-1  text-gray-400 dark:text-gray-600 poin cursor-not-allowed' dangerouslySetInnerHTML={{ __html: link.label }}></label>}
                             </div>

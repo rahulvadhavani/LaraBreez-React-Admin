@@ -19,7 +19,7 @@ class UserController extends Controller
         $users = User::when(isset(request()->search) && !empty(request()->search),function($query){
             $query->where('name','like','%'.request()->search.'%')
             ->orWhere('email','like','%'.request()->search.'%');
-        })->orderBy('id','desc')->paginate(10);
+        })->orderBy('id','desc')->paginate(10)->onEachSide(1);
         $users->appends(request()->query());
         $data= ['users' => $users,'module' => 'Users','current_page' => $current_page,'search' => $search];
         if(request()->expectsJson()){
