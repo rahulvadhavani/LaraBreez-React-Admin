@@ -21,12 +21,19 @@ class CreateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules =  [
             'first_name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => ['required', 'confirmed', 'max:8'],
+            'avatar' => ['nullable', 'image', 'max:2048', 'mimes:png,jpg,svg,jpeg,gif'],
         ];
+
+        if (isset(request()->id) && !empty(request()->id)) {
+            $rules['email'] = 'required|string|email|max:255|unique:users,email,' . request()->id;
+            $rules['password'] = ['nullable','required_with:current_password', 'confirmed', 'max:8'];
+            $rules['current_password'] = ['required_with:password'];
+        }
+        return $rules;
     }
 }

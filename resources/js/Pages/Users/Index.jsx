@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { usePage, Link } from '@inertiajs/react';
+import React, { useState } from 'react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import Authenticated from '@/Layouts/Authenticated';
 import Input from '@/Components/Input';
-import Button from '@/Components/Button';
-import { FaEdit, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
+import { FaEdit, FaEye, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
 import Pagination from '@/Components/Admin/Pagination';
-import DeleteModal from '@/Components/Admin/DeleteModal';
-import Breadcrumbs from '@/Components/Admin/Breadcrumbs';
-import Status from '@/Components/Admin/Status';
 import ButtonLink from '@/Components/Admin/ButtonLink';
+import PageHead from '@/Components/PageHead';
+import Status from '@/Components/Admin/Status';
+import DeleteModal from '@/Components/Admin/DeleteModal';
+
+
 
 const Index = ({ auth }) => {
-    const { users, module, search, current_page } = usePage().props;
+    const { users, module, breadcrumbs, search, current_page } = usePage().props;
     const [deleteUrl, setDeleteUrl] = useState('#');
     const [searchTerm, setSearchTerm] = useState(search);
     const [usersData, setusersData] = useState(users || []);
-
-    //
     const [show, setShow] = useState(false)
     const close = () => {
         setShow(false);
@@ -25,6 +24,7 @@ const Index = ({ auth }) => {
         setDeleteUrl(route('users.delete', { id }));
         setShow(true);
     }
+
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
@@ -41,22 +41,23 @@ const Index = ({ auth }) => {
         return () => clearTimeout(delayDebounceFn);
     }
 
-    const deleteData = { show, deleteUrl, close };
+
+    const deleteProps = {
+        show,
+        deleteUrl,
+        close
+    }
+
 
     return (
-        // 
         <Authenticated
             title={module}
             auth={auth}
             header={
-                <div className='flex justify-between'>
-                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                        {module}
-                    </h2>
-                    <Breadcrumbs modules={['User']}></Breadcrumbs>
-                </div>
+                <PageHead breadcrumbs={breadcrumbs} module={module} ></PageHead>
             }
         >
+            <Head title={module} />
             <div className="space-y-6">
                 <div className="p-2 sm:p-3 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div>
@@ -72,11 +73,13 @@ const Index = ({ auth }) => {
                                         name="search"
                                         value={searchTerm}
                                     />
-                                    <ButtonLink preserveScroll={true} href={route('users.index')} className='ml-3'>
+                                    <ButtonLink href={route('users.index')} className="ml-6" preserveScroll={true}>
                                         <FaUndoAlt />
                                     </ButtonLink>
                                 </div>
-                                <Button size='sm' href={route('users.create')}>Create</Button>
+                                <ButtonLink href={route('users.create')} className="ml-6" preserveScroll={true}>
+                                    Create
+                                </ButtonLink>
                             </div>
                             <div className="flex flex-col mt-3">
                                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -89,7 +92,10 @@ const Index = ({ auth }) => {
                                                             <span>Avatar</span>
                                                         </th>
                                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                            <span>Name</span>
+                                                            <span>First Name</span>
+                                                        </th>
+                                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                            <span>Last Name</span>
                                                         </th>
                                                         <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                             <span>Email</span>
@@ -116,27 +122,40 @@ const Index = ({ auth }) => {
                                                             </td>
                                                             <td className="px-4 py-2 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                                 <h2 className="font-medium text-gray-800 dark:text-white ">
-                                                                    {user.name}
+                                                                    {user.first_name}
+                                                                </h2>
+                                                            </td>
+                                                            <td className="px-4 py-2 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                                <h2 className="font-medium text-gray-800 dark:text-white ">
+                                                                    {user.last_name}
                                                                 </h2>
                                                             </td>
                                                             <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                                 {user.email}
                                                             </td>
                                                             <td className="px-4 py-2 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                                {user.email_verified_at != null ? <Status status={true} >Verified</Status> : <Status status={false} >Unverified</Status>}
+                                                                {user.email_verified_at != null ? <Status color='emerald' >Verified</Status> : <Status color="red" >Unverified</Status>}
                                                             </td>
-                                                            <td className="px-4 py-2 text-sm whitespace-nowrap">
+                                                            <td className="px-4 py-2 whitespace-nowrap">
                                                                 <div className="flex items-center gap-x-6 text-lg">
+                                                                    <Link href={route("users.show", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
+                                                                        <FaEye />
+                                                                    </Link>
                                                                     <button onClick={() => openModal(user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                                         <FaTrashAlt />
                                                                     </button>
-                                                                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                    <Link href={route("users.edit", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                         <FaEdit />
-                                                                    </button>
+                                                                    </Link>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     ))}
+                                                    {usersData.data.length == 0 ?
+                                                        <tr>
+                                                            <td colSpan={6} className='text-center p-4'>No Data Found</td>
+                                                        </tr>
+                                                        : ''}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -147,10 +166,11 @@ const Index = ({ auth }) => {
                         </section>
                     </div>
                 </div>
-                <DeleteModal {...deleteData}></DeleteModal>
+                <DeleteModal {...deleteProps}></DeleteModal>
             </div>
         </Authenticated>
     );
 };
+
 
 export default Index;

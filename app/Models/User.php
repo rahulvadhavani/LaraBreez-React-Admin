@@ -36,10 +36,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function getAvatarAttribute($value){
-        return $value == null ? asset('assets/images/user.png') : $value;
+    public function getAvatarAttribute($val)
+    {
+        return $val == null ? asset('assets/images/user.png') : asset("storage/uplaods/images/" . $val);
     }
-
+ 
     /**
      * The attributes that should be cast.
      *
