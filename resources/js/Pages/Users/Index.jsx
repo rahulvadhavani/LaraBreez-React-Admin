@@ -134,7 +134,7 @@ const Index = ({ auth }) => {
                                                                 {user.email}
                                                             </td>
                                                             <td className="px-4 py-2 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                                {user.email_verified_at != null ? <Status color='emerald' >Verified</Status> : <Status color="red" >Unverified</Status>}
+                                                                {user.email_verified_at != null ? <Status color='green' >Verified</Status> : <Status color="red" >Unverified</Status>}
                                                             </td>
                                                             <td className="px-4 py-2 whitespace-nowrap">
                                                                 <div className="flex items-center gap-x-6 text-lg">
