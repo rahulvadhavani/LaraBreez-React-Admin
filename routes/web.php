@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 });
 
-Route::get('/components/buttons', function () {
-    return Inertia::render('Components/Buttons');
-})->middleware(['auth', 'verified'])->name('components.buttons');
+// Route::get('/components/buttons', function () {
+//     return Inertia::render('Components/Buttons');
+// })->middleware(['auth', 'verified'])->name('components.buttons');
 
 require __DIR__ . '/auth.php';

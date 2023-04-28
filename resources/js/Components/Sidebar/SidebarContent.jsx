@@ -39,7 +39,7 @@ export default () => {
                 }
             />
 
-            <SidebarCollapsible
+            {/* <SidebarCollapsible
                 title="Components"
                 active={route().current('components.*')}
                 icon={<TemplateIcon aria-hidden="true" className="w-6 h-6" />}
@@ -49,7 +49,7 @@ export default () => {
                     title="Buttons"
                     active={route().current('components.buttons')}
                 />
-            </SidebarCollapsible>
+            </SidebarCollapsible> */}
         </PerfectScrollbar>
     )
 }
