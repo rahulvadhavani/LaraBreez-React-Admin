@@ -5,6 +5,7 @@ import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import InputError from '@/Components/InputError'
 import Button from '@/Components/Button'
+import { toast } from 'react-toastify'
 
 export default function UpdatePasswordForm({ className }) {
     const passwordInput = useRef()
@@ -29,7 +30,10 @@ export default function UpdatePasswordForm({ className }) {
 
         put(route('password.update'), {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                toast.success("Password updated successfully.")
+            },
             onError: () => {
                 if (errors.password) {
                     reset('password', 'password_confirmation')

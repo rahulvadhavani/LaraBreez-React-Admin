@@ -23,9 +23,12 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^37.1.0",
+        "@ckeditor/ckeditor5-react": "^6.0.0",
         "@inertiajs/progress": "^0.2.7",
         "flowbite": "^1.6.5",
         "flowbite-react": "^0.4.4",
-        "react-icons": "^4.8.0"
+        "react-icons": "^4.8.0",
+        "react-toastify": "^9.1.2"
     }
 }

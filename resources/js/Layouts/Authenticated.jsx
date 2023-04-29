@@ -2,8 +2,11 @@ import { useState, createContext, useEffect } from 'react'
 import Navbar from '@/Components/Navbar/Navbar'
 import Sidebar from '@/Components/Sidebar/Sidebar'
 import PageFooter from '@/Components/PageFooter'
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import { useDarkMode } from '@/Hooks'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const GlobalContext = createContext()
 
@@ -13,6 +16,8 @@ export default ({ auth, header, children, title }) => {
     const [isScrollDown, setScrollDown] = useState(false)
     const [isScrollUp, setScrollUp] = useState(false)
     const [isDark, setDarkMode] = useDarkMode()
+    const { success_message,error_message } = usePage().props;
+
 
     const handleSidebarHover = (value) => {
         setSidebarHovered(value)
@@ -48,6 +53,10 @@ export default ({ auth, header, children, title }) => {
     }
 
     useEffect(() => {
+        // show toast messages
+        if (success_message || error_message) {
+            success_message ? toast.success(success_message) : toast.error(error_message) ;
+        }
         window.addEventListener('resize', handleWindowResize)
         document.addEventListener('scroll', handleScroll)
 
@@ -55,7 +64,7 @@ export default ({ auth, header, children, title }) => {
             window.removeEventListener('resize', handleWindowResize)
             document.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [success_message,error_message])
 
     return (
         <GlobalContext.Provider
@@ -96,6 +105,7 @@ export default ({ auth, header, children, title }) => {
                     <PageFooter />
                 </div>
             </div>
+            <ToastContainer theme="dark" />
         </GlobalContext.Provider>
     )
 }

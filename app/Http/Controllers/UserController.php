@@ -23,15 +23,20 @@ class UserController extends Controller
                 ->orWhere('email', 'like', '%' . request()->search . '%');
         })->orderBy('id', 'desc')->paginate(10)->onEachSide(1);
         $users->appends(request()->query());
-        $data = ['users' => $users, 'module' => 'Users', 'breadcrumbs' => ['Users'], 'current_page' => $current_page, 'search' => $search];
+        $data = [
+            'users' => $users,
+            'module' => 'Users',
+            'breadcrumbs' => ['Users'],
+            'current_page' => $current_page,
+            'search' => $search,
+            'success_message' => session('success_message'),
+            'error_message' => session('error_message'),
+        ];
         if (request()->expectsJson()) {
             return response()->json($data);
         }
         return inertia('Users/Index', $data);
     }
-
-
-
 
     /**
      * Write code on Method
@@ -43,7 +48,6 @@ class UserController extends Controller
         $data = ['module' => 'Create User', 'breadcrumbs' => ['Users', 'Create User']];
         return Inertia::render('Users/Create', $data);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -61,12 +65,11 @@ class UserController extends Controller
         }
         unset($data['password_confirmation']);
         User::create($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success_message', 'Data Created successfully');
     }
 
-
     /**
-     * Write code on Method
+     * Edit the resource.
      *
      * @return response()
      */
@@ -76,7 +79,11 @@ class UserController extends Controller
         return Inertia::render('Users/Edit', $data);
     }
 
-
+    /**
+     * Show the resource.
+     *
+     * @return response()
+     */
     public function show(User $user)
     {
         $data = ['module' => 'User Detail', 'user' => $user, 'breadcrumbs' => ['Users', 'User Detail']];
@@ -85,7 +92,7 @@ class UserController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Update the resource.
      *
      * @return Response
      */
@@ -93,7 +100,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
         if ($user == null) {
-            abort(404);
+            return redirect()->route('users.index')->with('error_message', 'Data not found!!!');
         }
         $requestData = $request->only('name', 'email');
         if (isset($request->password) && !empty($request->password)) {
@@ -113,12 +120,12 @@ class UserController extends Controller
             $requestData['avatar'] = basename($imagePath);
         }
         $user->update($requestData);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success_message', 'Data Updated successfully');
     }
 
 
     /**
-     * Show the form for creating a new resource.
+     * Delete resource.
      *
      * @return Response
      */
@@ -126,28 +133,13 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
         if ($user == null) {
-            abort(404);
+            return redirect()->route('users.index')->with('error_message', 'Data not found!!!');
         }
         $avatar = $user->getAttributes()['avatar'] ?? null;
         if ($avatar != null) {
             unlink(storage_path('app/public/uplaods/images/' . $avatar));
         }
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success_message', 'Data deleted successfully');
     }
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function delete(string $id)
-    // {
-    //     $user = User::where('id', $id)->first();
-    //     if ($user == null) {
-    //         return abort(404);
-    //     }
-    //     $user->delete();
-    //     return to_route('users.index');
-    // }
 }

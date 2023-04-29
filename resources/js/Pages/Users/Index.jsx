@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import Authenticated from '@/Layouts/Authenticated';
 import Input from '@/Components/Input';

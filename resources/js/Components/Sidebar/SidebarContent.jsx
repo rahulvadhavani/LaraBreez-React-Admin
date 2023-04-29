@@ -39,17 +39,27 @@ export default () => {
                 }
             />
 
-            {/* <SidebarCollapsible
-                title="Components"
-                active={route().current('components.*')}
+            <SidebarCollapsible
+                title="Static Page"
+                active={route().current('static-page.*')}
                 icon={<TemplateIcon aria-hidden="true" className="w-6 h-6" />}
             >
                 <SidebarCollapsibleItem
-                    href={route('components.buttons')}
-                    title="Buttons"
-                    active={route().current('components.buttons')}
+                    href={route('static-page.index',{slug:'about-us'})}
+                    title="About Us"
+                    active={route().current('static-page.index',{slug:'about-us'})}
                 />
-            </SidebarCollapsible> */}
+                 <SidebarCollapsibleItem
+                    href={route('static-page.index',{slug:'terms-condition'})}
+                    title="Terms And Condition"
+                    active={route().current('static-page.index',{slug:'terms-condition'})}
+                />
+                 <SidebarCollapsibleItem
+                    href={route('static-page.index',{slug:'privacy-policy'})}
+                    title="Privacy Policy"
+                    active={route().current('static-page.index',{slug:'privacy-policy'})}
+                />
+            </SidebarCollapsible>
         </PerfectScrollbar>
     )
 }

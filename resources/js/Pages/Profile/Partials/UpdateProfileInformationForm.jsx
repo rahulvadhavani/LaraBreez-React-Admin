@@ -4,6 +4,8 @@ import Label from '@/Components/Label'
 import Input from '@/Components/Input'
 import InputError from '@/Components/InputError'
 import Button from '@/Components/Button'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -24,6 +26,9 @@ export default function UpdateProfileInformation({
 
         patch(route('profile.update'))
     }
+    useEffect(()=>{
+        recentlySuccessful && toast.success("Profile updated successfully.")
+    },[recentlySuccessful])
 
     return (
         <section className={className}>

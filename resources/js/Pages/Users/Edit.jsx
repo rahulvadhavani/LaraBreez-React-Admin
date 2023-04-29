@@ -77,7 +77,7 @@ export default function Edit(props) {
                                         setData("last_name", e.target.value)
                                     }
                                     id="last_name"
-                                    placeholder="Enter first name"
+                                    placeholder="Enter last name"
                                 />
                                 <span className="text-red-600">
                                     {errors.last_name}
