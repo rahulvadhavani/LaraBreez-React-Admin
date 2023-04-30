@@ -1,12 +1,10 @@
 import PerfectScrollbar from '@/Components/PerfectScrollbar'
-import { DashboardIcon } from '@/Components/Icons/outline'
 import {
     SidebarLink,
     SidebarCollapsibleItem,
     SidebarCollapsible,
 } from '@/Components/Sidebar/Sidebar'
 import { TemplateIcon } from '@heroicons/react/outline'
-import { FaTachometerAlt, FaUserCircle, FaUsers } from 'react-icons/fa';
 
 export default () => {
     return (
@@ -19,7 +17,7 @@ export default () => {
                 href={route('dashboard')}
                 active={route().current('dashboard')}
                 icon={
-                    <FaTachometerAlt className='text-2xl' />
+                    <i className="text-xl fa-solid fa-tachometer-alt"></i>
                 }
             />
             <SidebarLink
@@ -27,7 +25,7 @@ export default () => {
                 href={route('users.index')}
                 active={route().current('users.*')}
                 icon={
-                    <FaUsers className='text-2xl' />
+                    <i className="text-xl fa-solid fa-users"></i>
                 }
             />
             <SidebarLink
@@ -35,29 +33,29 @@ export default () => {
                 href={route('profile.edit')}
                 active={route().current('profile.*')}
                 icon={
-                    <FaUserCircle className='text-2xl' />
+                    <i className="text-xl fa-solid fa-user-circle"></i>
                 }
             />
 
             <SidebarCollapsible
                 title="Static Page"
                 active={route().current('static-page.*')}
-                icon={<TemplateIcon aria-hidden="true" className="w-6 h-6" />}
+                icon={<i class="text-xl fa-solid fa-compass-drafting"></i>}
             >
                 <SidebarCollapsibleItem
-                    href={route('static-page.index',{slug:'about-us'})}
+                    href={route('static-page.index', { slug: 'about-us' })}
                     title="About Us"
-                    active={route().current('static-page.index',{slug:'about-us'})}
+                    active={route().current('static-page.index', { slug: 'about-us' })}
                 />
-                 <SidebarCollapsibleItem
-                    href={route('static-page.index',{slug:'terms-condition'})}
+                <SidebarCollapsibleItem
+                    href={route('static-page.index', { slug: 'terms-condition' })}
                     title="Terms And Condition"
-                    active={route().current('static-page.index',{slug:'terms-condition'})}
+                    active={route().current('static-page.index', { slug: 'terms-condition' })}
                 />
-                 <SidebarCollapsibleItem
-                    href={route('static-page.index',{slug:'privacy-policy'})}
+                <SidebarCollapsibleItem
+                    href={route('static-page.index', { slug: 'privacy-policy' })}
                     title="Privacy Policy"
-                    active={route().current('static-page.index',{slug:'privacy-policy'})}
+                    active={route().current('static-page.index', { slug: 'privacy-policy' })}
                 />
             </SidebarCollapsible>
         </PerfectScrollbar>

@@ -9,7 +9,7 @@ import BackButton from '@/Components/Admin/BackButton';
 export default function Create(props) {
 
    const { module, breadcrumbs } = usePage().props;
-   const { data, setData, errors, post } = useForm({
+   const { data, setData, errors, post,processing } = useForm({
        first_name: "",
        last_name: "",
        email: "",
@@ -158,7 +158,7 @@ export default function Create(props) {
                            </div>
                        </div>
                        <div className='mt-5 flex justify-center'>
-                           <Button type='submit' name='update' onClick={handleSubmit}>Save</Button>
+                           <Button processing={processing} type='submit' name='update' onClick={handleSubmit}>Save</Button>
                        </div>
                    </form>
                </div>

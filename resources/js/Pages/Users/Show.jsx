@@ -3,7 +3,6 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link, usePage } from '@inertiajs/react';
 import BackButton from '@/Components/Admin/BackButton';
 import PageHead from '@/Components/PageHead';
-import { FaAt, FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa';
 import Status from '@/Components/Admin/Status';
 import DeleteModal from '@/Components/Admin/DeleteModal';
 
@@ -12,9 +11,6 @@ import DeleteModal from '@/Components/Admin/DeleteModal';
 
 export default function Show(props) {
     const { user, module, breadcrumbs } = usePage().props;
-
-
-    // //
     const [deleteUrl, setDeleteUrl] = useState('#');
     const [show, setShow] = useState(false)
     const close = () => {
@@ -30,7 +26,7 @@ export default function Show(props) {
         deleteUrl,
         close
     }
-    // //
+
     return (
         <Authenticated
             auth={props.auth}
@@ -42,12 +38,12 @@ export default function Show(props) {
             <div className="space-y-6">
                 <div className="p-2 min-h-[78vh] sm:p-3 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div className='flex justify-between content-center'>
-                        <div className='flex content-center justify-start'>
+                        <div className='py-2  flex content-center justify-start'>
                             <button onClick={() => openModal(user.id)} className="inline-flex items-center justify-center w-8 h-8 mr-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-full focus:shadow-outline hover:bg-red-800">
-                                <FaTrashAlt />
+                                <i class="fa-solid fa-trash-alt"></i>
                             </button>
                             <Link href={route("users.edit", user.id)} className="inline-flex items-center justify-center w-8 h-8 mr-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-full focus:shadow-outline hover:bg-blue-800">
-                                <FaEdit />
+                                <i class="fa-solid fa-edit"></i>
                             </Link>
                         </div>
                         <BackButton href={route("users.index")}></BackButton>
@@ -60,7 +56,7 @@ export default function Show(props) {
                                 alt="avatar"
                             />
                             <div className="flex items-center px-6 py-3 bg-gray-900">
-                                <FaAt className="w-5 h-5 text-white fill-current"></FaAt>
+                                <i class="text-2xl text-white fill-current fa-solid fa-at"></i>
                                 <h1 className="mx-3 text-lg font-semibold text-white">{user.email ?? '-'}</h1>
                             </div>
                             <div className="px-6 py-4">

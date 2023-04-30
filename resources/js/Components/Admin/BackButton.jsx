@@ -1,6 +1,4 @@
 import React from 'react'
-import Button from '../Button'
-import { FaRegArrowAltCircleLeft } from 'react-icons/fa'
 import { Link } from '@inertiajs/react'
 
 export default function BackButton(props) {
@@ -8,7 +6,7 @@ export default function BackButton(props) {
         <>
             <div className='px-6 py-2 flex justify-end'>
                 <Link href={props.href}>
-                    <FaRegArrowAltCircleLeft className='text-3xl'></FaRegArrowAltCircleLeft>
+                    <i className="text-3xl fa-solid fa-circle-arrow-left"></i>
                 </Link>
             </div>
         </>

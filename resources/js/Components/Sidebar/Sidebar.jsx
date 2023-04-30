@@ -103,9 +103,8 @@ export const SidebarLink = ({
         return (
             <LinkTag
                 href={href}
-                className={`${baseClasses} ${
-                    active ? activeClasses : unActiveClasses
-                }`}
+                className={`${baseClasses} ${active ? activeClasses : unActiveClasses
+                    }`}
             >
                 {icon ?? (
                     <EmptyCircleIcon
@@ -122,9 +121,8 @@ export const SidebarLink = ({
         return (
             <button
                 type="button"
-                className={`${baseClasses} ${
-                    active ? activeClasses : unActiveClasses
-                }`}
+                className={`${baseClasses} ${active ? activeClasses : unActiveClasses
+                    }`}
                 onClick={onClick}
             >
                 {icon ?? (
@@ -162,11 +160,11 @@ export const SidebarCollapsibleItem = ({
             <Tag
                 href={href}
                 target={target}
-                className={`${linkBaseClasses} ${
-                    active ? linkActiveClasses : linkInActiveClasses
-                }`}
+                className={`${linkBaseClasses} ${active ? linkActiveClasses : linkInActiveClasses
+                    }`}
             >
                 {title}
+                 {active && <div class="inline-flex items-center p-2 rounded-full gap-x-2 bg-green-100 dark:bg-gray-800"><span class="h-1.5 w-1.5 rounded-full bg-green-500"></span></div>}
             </Tag>
         </li>
     )
@@ -204,14 +202,12 @@ export const SidebarCollapsible = ({
                             className="relative block w-6 h-6 ml-auto"
                         >
                             <span
-                                className={`absolute right-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${
-                                    isOpen ? '-rotate-45' : 'rotate-45'
-                                } ${active ? 'bg-white' : 'bg-gray-400'}`}
+                                className={`absolute right-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${isOpen ? '-rotate-45' : 'rotate-45'
+                                    } ${active ? 'bg-white' : 'bg-gray-400'}`}
                             ></span>
                             <span
-                                className={`absolute left-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${
-                                    isOpen ? 'rotate-45' : '-rotate-45'
-                                } ${active ? 'bg-white' : 'bg-gray-400'}`}
+                                className={`absolute left-[9px] mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200 ${isOpen ? 'rotate-45' : '-rotate-45'
+                                    } ${active ? 'bg-white' : 'bg-gray-400'}`}
                             ></span>
                         </span>
                     )
@@ -290,15 +286,13 @@ export default () => {
                     transitionProperty: 'width, transform',
                     transitionDuration: '150ms',
                 }}
-                className={`fixed inset-y-0 z-20 flex flex-col py-4 space-y-6 bg-white shadow-lg dark:bg-dark-eval-1 ${
-                    isSidebarOpen || isSidebarHovered
+                className={`fixed inset-y-0 z-20 flex flex-col py-4 space-y-6 bg-white shadow-lg dark:bg-dark-eval-1 ${isSidebarOpen || isSidebarHovered
                         ? 'translate-x-0 w-64'
                         : ''
-                } ${
-                    !isSidebarOpen && !isSidebarHovered
+                    } ${!isSidebarOpen && !isSidebarHovered
                         ? '-translate-x-full w-64 md:w-16 md:translate-x-0'
                         : ''
-                }`}
+                    }`}
                 onMouseEnter={() => handleSidebarHover(true)}
                 onMouseLeave={() => handleSidebarHover(false)}
             >

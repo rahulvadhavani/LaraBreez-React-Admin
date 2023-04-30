@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import Authenticated from '@/Layouts/Authenticated';
 import Input from '@/Components/Input';
-import { FaEdit, FaEye, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
 import Pagination from '@/Components/Admin/Pagination';
 import ButtonLink from '@/Components/Admin/ButtonLink';
 import PageHead from '@/Components/PageHead';
@@ -74,7 +73,7 @@ const Index = ({ auth }) => {
                                         value={searchTerm}
                                     />
                                     <ButtonLink href={route('users.index')} className="ml-6" preserveScroll={true}>
-                                        <FaUndoAlt />
+                                        <i class="fa-solid fa-undo-alt"></i>
                                     </ButtonLink>
                                 </div>
                                 <ButtonLink href={route('users.create')} className="ml-6" preserveScroll={true}>
@@ -139,13 +138,13 @@ const Index = ({ auth }) => {
                                                             <td className="px-4 py-2 whitespace-nowrap">
                                                                 <div className="flex items-center gap-x-6 text-lg">
                                                                     <Link href={route("users.show", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
-                                                                        <FaEye />
+                                                                        <i class="fa-solid fa-eye"></i>
                                                                     </Link>
                                                                     <button onClick={() => openModal(user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                                                        <FaTrashAlt />
+                                                                        <i class="fa-solid fa-trash-alt"></i>
                                                                     </button>
                                                                     <Link href={route("users.edit", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                                                                        <FaEdit />
+                                                                        <i class="fa-solid fa-edit"></i>
                                                                     </Link>
                                                                 </div>
                                                             </td>

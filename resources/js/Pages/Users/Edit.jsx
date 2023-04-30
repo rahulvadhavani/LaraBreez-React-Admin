@@ -3,7 +3,6 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FileInput, Label, TextInput } from 'flowbite-react';
 import BackButton from '@/Components/Admin/BackButton';
-import { FaExclamation } from 'react-icons/fa';
 import PageHead from '@/Components/PageHead';
 import Button from '@/Components/Button';
 
@@ -11,7 +10,7 @@ import Button from '@/Components/Button';
 export default function Edit(props) {
 
     const { user, module, breadcrumbs } = usePage().props;
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, post, errors,processing } = useForm({
         first_name: user.first_name || "",
         last_name: user.last_name || "",
         email: user.email || "",
@@ -125,7 +124,7 @@ export default function Edit(props) {
                         </div>
                         <div className="mt-14 mb-2 flex w-full overflow-hidden bg-white rounded-lg shadow-sm border dark:border-gray-600 border-gray-200 dark:bg-gray-800">
                             <div className="flex items-center justify-center w-12 bg-yellow-400">
-                                <FaExclamation className="w-6 h-6 text-white fill-current"></FaExclamation>
+                                <i class="text-2xl text-white fill-current fa-solid fa-exclamation"></i>
                             </div>
                             <div className="px-4 py-2 -mx-3">
                                 <div className="mx-3">
@@ -205,7 +204,7 @@ export default function Edit(props) {
                         </div>
                         <input type="hidden" value={data.id} name='id' />
                         <div className='mt-5 flex justify-center'>
-                            <Button type='submit' name='update' onClick={handleSubmit}>Update</Button>
+                            <Button processing={processing} type='submit' name='update' onClick={handleSubmit}>Update</Button>
                         </div>
                     </form>
                 </div>
