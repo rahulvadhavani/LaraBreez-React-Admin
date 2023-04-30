@@ -40,10 +40,10 @@ export default function Show(props) {
                     <div className='flex justify-between content-center'>
                         <div className='py-2  flex content-center justify-start'>
                             <button onClick={() => openModal(user.id)} className="inline-flex items-center justify-center w-8 h-8 mr-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-full focus:shadow-outline hover:bg-red-800">
-                                <i class="fa-solid fa-trash-alt"></i>
+                                <i className="fa-solid fa-trash-alt"></i>
                             </button>
                             <Link href={route("users.edit", user.id)} className="inline-flex items-center justify-center w-8 h-8 mr-2 text-blue-100 transition-colors duration-150 bg-blue-600 rounded-full focus:shadow-outline hover:bg-blue-800">
-                                <i class="fa-solid fa-edit"></i>
+                                <i className="fa-solid fa-edit"></i>
                             </Link>
                         </div>
                         <BackButton href={route("users.index")}></BackButton>
@@ -56,7 +56,7 @@ export default function Show(props) {
                                 alt="avatar"
                             />
                             <div className="flex items-center px-6 py-3 bg-gray-900">
-                                <i class="text-2xl text-white fill-current fa-solid fa-at"></i>
+                                <i className="text-2xl text-white fill-current fa-solid fa-at"></i>
                                 <h1 className="mx-3 text-lg font-semibold text-white">{user.email ?? '-'}</h1>
                             </div>
                             <div className="px-6 py-4">

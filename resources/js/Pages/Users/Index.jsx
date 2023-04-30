@@ -36,17 +36,15 @@ const Index = ({ auth }) => {
                     console.log(res);
                     setusersData(res.data.users)
                 })
-        }, 500);
+        },1500);
         return () => clearTimeout(delayDebounceFn);
     }
-
 
     const deleteProps = {
         show,
         deleteUrl,
         close
     }
-
 
     return (
         <Authenticated
@@ -73,7 +71,7 @@ const Index = ({ auth }) => {
                                         value={searchTerm}
                                     />
                                     <ButtonLink href={route('users.index')} className="ml-6" preserveScroll={true}>
-                                        <i class="fa-solid fa-undo-alt"></i>
+                                        <i className="fa-solid fa-undo-alt"></i>
                                     </ButtonLink>
                                 </div>
                                 <ButtonLink href={route('users.create')} className="ml-6" preserveScroll={true}>
@@ -138,13 +136,13 @@ const Index = ({ auth }) => {
                                                             <td className="px-4 py-2 whitespace-nowrap">
                                                                 <div className="flex items-center gap-x-6 text-lg">
                                                                     <Link href={route("users.show", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none">
-                                                                        <i class="fa-solid fa-eye"></i>
+                                                                        <i className="fa-solid fa-eye"></i>
                                                                     </Link>
                                                                     <button onClick={() => openModal(user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                                                        <i class="fa-solid fa-trash-alt"></i>
+                                                                        <i className="fa-solid fa-trash-alt"></i>
                                                                     </button>
                                                                     <Link href={route("users.edit", user.id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                                                                        <i class="fa-solid fa-edit"></i>
+                                                                        <i className="fa-solid fa-edit"></i>
                                                                     </Link>
                                                                 </div>
                                                             </td>

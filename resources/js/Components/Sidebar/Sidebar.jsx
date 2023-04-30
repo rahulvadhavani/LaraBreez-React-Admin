@@ -164,7 +164,7 @@ export const SidebarCollapsibleItem = ({
                     }`}
             >
                 {title}
-                 {active && <div class="inline-flex items-center p-2 rounded-full gap-x-2 bg-green-100 dark:bg-gray-800"><span class="h-1.5 w-1.5 rounded-full bg-green-500"></span></div>}
+                 {active && <div className="inline-flex items-center p-2 rounded-full gap-x-2 bg-green-100 dark:bg-gray-800"><span className="h-1.5 w-1.5 rounded-full bg-green-500"></span></div>}
             </Tag>
         </li>
     )

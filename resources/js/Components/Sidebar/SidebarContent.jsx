@@ -40,7 +40,7 @@ export default () => {
             <SidebarCollapsible
                 title="Static Page"
                 active={route().current('static-page.*')}
-                icon={<i class="text-xl fa-solid fa-compass-drafting"></i>}
+                icon={<i className="text-xl fa-solid fa-compass-drafting"></i>}
             >
                 <SidebarCollapsibleItem
                     href={route('static-page.index', { slug: 'about-us' })}

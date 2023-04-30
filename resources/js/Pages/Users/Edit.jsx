@@ -124,7 +124,7 @@ export default function Edit(props) {
                         </div>
                         <div className="mt-14 mb-2 flex w-full overflow-hidden bg-white rounded-lg shadow-sm border dark:border-gray-600 border-gray-200 dark:bg-gray-800">
                             <div className="flex items-center justify-center w-12 bg-yellow-400">
-                                <i class="text-2xl text-white fill-current fa-solid fa-exclamation"></i>
+                                <i className="text-2xl text-white fill-current fa-solid fa-exclamation"></i>
                             </div>
                             <div className="px-4 py-2 -mx-3">
                                 <div className="mx-3">
